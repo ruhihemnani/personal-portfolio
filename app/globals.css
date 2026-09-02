@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   Design tokens — Editorial Minimal
+   A warm, paper-toned palette carried by a serif/sans pairing.
+   Color does almost no work here; typography and space do.
+----------------------------------------------------------------*/
+
+:root {
+  /* Surfaces */
+  --background: #faf9f6;      /* warm paper */
+  --surface: #f3f1ea;         /* slightly deeper panel, e.g. cards */
+
+  /* Ink */
+  --foreground: #1c1b19;      /* near-black, warm */
+  --muted: #6b6459;           /* secondary text */
+  --muted-2: #948c7e;         /* tertiary text, captions, meta */
+
+  /* Accent — muted ochre, used sparingly (links, active states, one detail per view) */
+  --accent: #9c6b16;
+  --accent-strong: #7a530f;   /* hover / pressed */
+  --accent-tint: #eee3cb;     /* backgrounds behind accent, e.g. tags */
+
+  /* Structure */
+  --border: #e3ded2;          /* hairline rules */
+  --border-strong: #c9c2b2;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-tint: var(--accent-tint);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  /* Fraunces for display/headings, Inter for everything read at length */
+  --font-serif: "Fraunces Variable", ui-serif, Georgia, serif;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* Type scale — a ~1.25 ratio, editorial-sized body copy */
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.4;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.65;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.6;
+  --text-xl: 1.5rem;
+  --text-xl--line-height: 1.4;
+  --text-2xl: 1.875rem;
+  --text-2xl--line-height: 1.3;
+  --text-3xl: 2.25rem;
+  --text-3xl--line-height: 1.2;
+  --text-4xl: 2.75rem;
+  --text-4xl--line-height: 1.12;
+  --text-5xl: 3.5rem;
+  --text-5xl--line-height: 1.06;
+  --text-6xl: 4.5rem;
+  --text-6xl--line-height: 1.02;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* This direction is intentionally light/paper-toned; we keep a single
+     light theme rather than auto-switching, so brand feel stays consistent. */
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--text-base--line-height);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: var(--foreground);
+  letter-spacing: -0.01em;
+}
+
+/* Links: understated by default, accent only on hover/focus so the
+   accent color stays a deliberate signal rather than decoration. */
+a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--accent-strong);
+}
+
+::selection {
+  background: var(--accent-tint);
+  color: var(--foreground);
+}
+
+/* Visible keyboard focus everywhere — accessibility floor */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
